@@ -1,30 +1,32 @@
+use std::process::exit;
+use std::str::FromStr;
+
 use clap::{
-    crate_description, crate_name, crate_version, value_t_or_exit, App, AppSettings, Arg,
-    SubCommand,
+    App, AppSettings, Arg, crate_description, crate_name, crate_version, SubCommand,
+    value_t_or_exit,
 };
 use solana_clap_utils::fee_payer::fee_payer_arg;
-use solana_clap_utils::input_validators::{is_url_or_moniker, is_valid_pubkey, normalize_to_url_if_moniker, is_parsable, is_valid_signer};
-use solana_client::rpc_client::RpcClient;
-use solana_sdk::system_instruction::create_account;
-use solana_sdk::pubkey::Pubkey;
-use solana_sdk::signature::{Keypair, Signer, write_keypair_file, read_keypair_file};
-use spl_token::instruction::{initialize_mint, initialize_account};
-use spl_token::state::Mint;
-use spl_token::state::Account;
-use spl_token_swap::state::SwapVersion;
-use solana_sdk::transaction::Transaction;
-use spl_token::native_mint;
-use std::str::FromStr;
-use spl_associated_token_account::solana_program::program_pack::Pack;
-use solana_client::client_error::ClientError;
+use solana_clap_utils::input_validators::{is_parsable, is_url_or_moniker, is_valid_pubkey, is_valid_signer, normalize_to_url_if_moniker};
 use solana_clap_utils::keypair::signer_from_path;
-use std::process::exit;
-use solana_sdk::commitment_config::{CommitmentConfig, CommitmentLevel};
-use spl_token_swap::instruction as token_swap_instruction;
-use spl_token_swap::curve::fees::Fees;
-use spl_token_swap::curve::base::{CurveType, SwapCurve};
+use solana_client::client_error::ClientError;
+use solana_client::rpc_client::RpcClient;
 use solana_client::rpc_config::RpcSendTransactionConfig;
+use solana_sdk::commitment_config::{CommitmentConfig, CommitmentLevel};
 use solana_sdk::instruction::Instruction;
+use solana_sdk::pubkey::Pubkey;
+use solana_sdk::signature::{Keypair, read_keypair_file, Signer, write_keypair_file};
+use solana_sdk::system_instruction::create_account;
+use solana_sdk::transaction::Transaction;
+
+use spl_associated_token_account::solana_program::program_pack::Pack;
+use spl_token::instruction::{initialize_account, initialize_mint};
+use spl_token::native_mint;
+use spl_token::state::Account;
+use spl_token::state::Mint;
+use spl_token_swap::curve::base::{CurveType, SwapCurve};
+use spl_token_swap::curve::fees::Fees;
+use spl_token_swap::instruction as token_swap_instruction;
+use spl_token_swap::state::SwapVersion;
 
 const TOKEN_SWAP_PROGRAM_ID_STR: &str = "F2LtPFtixA8vKbg8ark5zswM4QuJKBn85KZcqrzWNe4K";
 const TOKEN_PROGRAM_ID_STR: &str = "CiBbJADtSJnVQEsgXZpRfLyLNqDjwfvua8EMe9tPhKvo";
@@ -273,5 +275,5 @@ fn main() {
             println!("Sol x SolClout defined at {}", token_swap_account.pubkey())
         },
         _ => unreachable!(),
-    }
+    }“
 }

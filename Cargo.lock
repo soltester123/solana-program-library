@@ -3811,6 +3811,44 @@ dependencies = [
 ]
 
 [[package]]
+name = "spl-solclout"
+version = "0.0.1"
+dependencies = [
+ "assert_matches",
+ "borsh",
+ "log",
+ "num-derive",
+ "num-traits",
+ "proptest",
+ "solana-program",
+ "solana-program-test",
+ "solana-sdk",
+ "spl-token 3.1.0",
+ "thiserror",
+]
+
+[[package]]
+name = "spl-solclout-cli"
+version = "0.0.1"
+dependencies = [
+ "clap",
+ "console 0.14.0",
+ "serde_json",
+ "solana-account-decoder",
+ "solana-clap-utils",
+ "solana-cli-config",
+ "solana-cli-output",
+ "solana-client",
+ "solana-logger",
+ "solana-remote-wallet",
+ "solana-sdk",
+ "spl-associated-token-account 1.0.2",
+ "spl-solclout",
+ "spl-token 3.1.0",
+ "spl-token-swap",
+]
+
+[[package]]
 name = "spl-stake-pool"
 version = "0.1.0"
 dependencies = [
